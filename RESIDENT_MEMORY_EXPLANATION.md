@@ -162,11 +162,16 @@ top -p <pid>
 # stats.resident should be close to RSS
 ```
 
-**Note**: There may be small differences due to:
-- Other libraries using memory (not jemalloc)
-- Stack memory
+**Note**: `stats.resident` is typically **smaller** than OS RSS because RSS includes:
+- Thread stacks
+- Shared library code segments
+- Memory allocated by other libraries
+- Memory-mapped files
 - Other memory mappings
-- Timing differences between measurements
+
+**See `RSS_VS_RESIDENT_DIFFERENCE.md` for detailed explanation of why `stats.resident < RSS` and how to investigate the difference.**
+
+**See `diagnose_rss_difference.c` for a diagnostic tool to analyze the difference.**
 
 ## Summary
 

@@ -165,9 +165,14 @@ printf("Total allocated: %zu bytes\n", total_allocated + large_allocated);
 ### Resident vs Mapped
 
 - **Resident**: Physical RAM currently in use
+  - Includes: Active pages + Dirty pages + Metadata
+  - **This is the best estimate for physical memory utilization**
+  - Should closely match OS RSS (Resident Set Size)
 - **Mapped**: Virtual address space mapped from OS
   - Mapped ≥ Resident (some mapped pages may be swapped out)
   - Mapped includes both active and retained memory
+
+**See `RESIDENT_MEMORY_EXPLANATION.md` for detailed explanation of what "resident" means and why it's the best estimate for physical memory usage.**
 
 ### Retained Memory
 
